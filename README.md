@@ -136,7 +136,7 @@ data/
 
     ```js
     const pluma = require('pluma')
-    const api = new Pluma({...})
+    const api = new Pluma(constructorOptions)
     ```
 
 ## API
@@ -153,11 +153,12 @@ const api = new Pluma({
 
 The constructor accepts an object with the following properties.
 
-- `blueprint`
+- #### `blueprint`
 
     A path describing the hierarchy and nomenclature of your data. It should start with a static path to the directory where all the files are located, followed by the name of each data level (starting with a colon).
 
     *Example:*
+    
     `'data/:country/:brand/:review'`
 
 ## Credits
