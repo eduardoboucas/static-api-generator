@@ -5,9 +5,11 @@
 [![Build Status](https://travis-ci.org/dadi/pluma.svg?branch=master)](https://travis-ci.org/dadi/pluma)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 
-Pluma is a Node application that creates a basic JSON API from a tree of directories and files. Think a static site generator like Jekyll or Hugo but for APIs.
+Pluma is a lightweight Node.js application that creates a basic JSON API from a tree of directories and files. Think of a static site generator, like Jekyll or Hugo, but for APIs.
 
-It allows you to create an API layer with whatever structure you want, whilst keeping the data files in a human-friendly format and easy to edit by hand. With Pluma, you can create an API that can be consumed by a client-side application or a third-party service, and serve it right from your GitHHub repository.
+It takes your existing data files, which you may already be using to feed a static site generator or similar, and creates an API layer with whatever structure you want, leaving the original files untouched. Pluma helps you deliver your data to client-side applications or third-party syndication services.
+
+Couple it with services like [GitHub Pages](https://pages.github.com/) or [Netlify](https://www.netlify.com/) and you can serve your API right from the repository too. :boom:
 
 ## Usage
 
