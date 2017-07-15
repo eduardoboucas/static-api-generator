@@ -52,7 +52,7 @@ data/
 
     This will generate 3 files: `output/american.json`, `output/japanese.json` and `output/scotch.json`, looking something like this:
 
-    *output/american.json*
+    *output/american.json*:
 
     ```json
     {
@@ -70,3 +70,49 @@ data/
     }
     ```
 
+- Configure each endpoint to contain the exact amount of information you want. We can tweak the previous endpoint to also include the list of reviews for each brand, by changing the `depth` property, which configures the amount of nested levels that the endpoint will pick up (defaults to 1).
+
+    ```js
+    api.addEndpoint({
+      forEach: 'country',
+      depth: 2
+    })
+    ```
+
+    *output/american.json*:
+
+    ```json
+    {
+      "brands": [
+        {
+          "brand_id": "anchor-distilling",
+          "reviews": [
+            {
+              "review_id": "04440f660f472e81eda881cbd8ee6ab0",
+              "name": "John Appleseed",
+              "message": "I've got 99 whiskies but this is the one!"
+            },
+            {
+              "review_id": "05cc65f24af5ec420da8950d539a926d",
+              "name": "Jane Doe",
+              "message": "Hmm, not my cup of tea."
+            }
+          ]
+        },
+        {
+          "brand_id": "bakers",
+          "reviews": null
+        },
+        {
+          "brand_id": "bernheim",
+          "reviews": [
+            {
+              "review_id": "96a9b996439528ecb9050774c3e79ff2",
+              "name": "Justin Case",
+              "message": "First two glasses tasted great, can't really remember the rest!"
+            }
+          ]
+        } 
+      ]
+    }
+    ```
