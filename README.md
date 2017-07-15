@@ -62,6 +62,7 @@ data/
     <details>
       <summary><i>output/american.json</i></summary>
 
+      ```json
       {
         "brands": [
           {
@@ -74,7 +75,8 @@ data/
             "brand_id": "bernheim"
           }
         ]
-      }      
+      }
+      ```
     </details>
 
 1. Configure each endpoint to contain the exact amount of information you want. We can tweak the previous endpoint to also include the list of reviews for each brand, by changing the `depth` property, which configures the amount of nested data levels that the endpoint will pick up.
