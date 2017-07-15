@@ -1,14 +1,18 @@
 {
-  "name": "static-api",
+  "name": "pluma",
   "version": "1.0.0",
-  "description": "",
+  "description": "Static API generator",
   "main": "index.js",
   "scripts": {
     "test": "standard && jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "api",
+    "static",
+    "json-api"
+  ],
+  "author": "Eduardo Bouças <mail@eduardoboucas.com>",
+  "license": "MIT",
   "dependencies": {
     "js-yaml": "^3.9.0",
     "md5": "^2.2.1",
