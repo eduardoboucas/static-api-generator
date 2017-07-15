@@ -57,25 +57,25 @@ data/
     })
     ```
 
-    This will generate 3 files: `output/american.json`, `output/japanese.json` and `output/scotch.json`, looking something like this:
+    This will generate 3 files: `output/american.json`, `output/japanese.json` and `output/scotch.json`.
 
-    *output/american.json*:
+    <details>
+      <summary><i>output/american.json</i></summary>
 
-    ```json
-    {
-      "brands": [
-        {
-          "brand_id": "anchor-distilling"
-        },
-        {
-          "brand_id": "bakers"
-        },
-        {
-          "brand_id": "bernheim"
-        }
-      ]
-    }
-    ```
+      {
+        "brands": [
+          {
+            "brand_id": "anchor-distilling"
+          },
+          {
+            "brand_id": "bakers"
+          },
+          {
+            "brand_id": "bernheim"
+          }
+        ]
+      }      
+    </details>
 
 1. Configure each endpoint to contain the exact amount of information you want. We can tweak the previous endpoint to also include the list of reviews for each brand, by changing the `depth` property, which configures the amount of nested data levels that the endpoint will pick up.
 
@@ -86,43 +86,43 @@ data/
     })
     ```
 
-    *output/american.json*:
+    <details>
+      <summary><i>output/american.json</i></summary>
 
-    ```json
-    {
-      "brands": [
-        {
-          "brand_id": "anchor-distilling",
-          "reviews": [
-            {
-              "review_id": "04440f660f472e81eda881cbd8ee6ab0",
-              "name": "John Appleseed",
-              "message": "I've got 99 whiskies but this is the one!"
-            },
-            {
-              "review_id": "05cc65f24af5ec420da8950d539a926d",
-              "name": "Jane Doe",
-              "message": "Hmm, not my cup of tea."
-            }
-          ]
-        },
-        {
-          "brand_id": "bakers",
-          "reviews": null
-        },
-        {
-          "brand_id": "bernheim",
-          "reviews": [
-            {
-              "review_id": "96a9b996439528ecb9050774c3e79ff2",
-              "name": "Justin Case",
-              "message": "First two glasses tasted great, can't really remember the rest!"
-            }
-          ]
-        } 
-      ]
-    }
-    ```
+      {
+        "brands": [
+          {
+            "brand_id": "anchor-distilling",
+            "reviews": [
+              {
+                "review_id": "04440f660f472e81eda881cbd8ee6ab0",
+                "name": "John Appleseed",
+                "message": "I've got 99 whiskies but this is the one!"
+              },
+              {
+                "review_id": "05cc65f24af5ec420da8950d539a926d",
+                "name": "Jane Doe",
+                "message": "Hmm, not my cup of tea."
+              }
+            ]
+          },
+          {
+            "brand_id": "bakers",
+            "reviews": null
+          },
+          {
+            "brand_id": "bernheim",
+            "reviews": [
+              {
+                "review_id": "96a9b996439528ecb9050774c3e79ff2",
+                "name": "Justin Case",
+                "message": "First two glasses tasted great, can't really remember the rest!"
+              }
+            ]
+          } 
+        ]
+      }
+    </details>
 
 ## Installation
 
@@ -171,7 +171,7 @@ The constructor method takes an object with the following properties.
     
     `'output'`
 
-### `addEndpoint`
+### Method: `addEndpoint`
 
 ```js
 api.addEndpoint({
@@ -219,25 +219,25 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
     }
     ```
 
-    *Example result (output/american.json)*:
+    <details>
+      <summary><i>Example result (output/american.json)</i></summary>
 
-    ```json
-    {
-      "apiVersion": 2,
-      "brands": [
-        {
-          "brand_id": "anchor-distilling"
-        },
-        {
-          "brand_id": "bakers"
-        },
-        {
-          "brand_id": "bernheim"
-        } 
-      ],
-      "brandCount": 3
-    }
-    ```
+      {
+        "apiVersion": 2,
+        "brands": [
+          {
+            "brand_id": "anchor-distilling"
+          },
+          {
+            "brand_id": "bakers"
+          },
+          {
+            "brand_id": "bernheim"
+          } 
+        ],
+        "brandCount": 3
+      }      
+    </details>
 
 - #### `depth`
 
@@ -252,9 +252,8 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
     `2`
 
     <details>
-      <summary>*Example result*</summary>
+    <summary><i>Example result</i></summary>
 
-        ```json
         {
           "brands": [
             {
@@ -288,7 +287,6 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
             } 
           ]
         }
-        ``` 
     </details>
 
 - ### `forEach`
