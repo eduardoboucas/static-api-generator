@@ -91,6 +91,7 @@ data/
     <details>
       <summary><i>output/american.json</i></summary>
 
+      ```json
       {
         "brands": [
           {
@@ -124,6 +125,7 @@ data/
           } 
         ]
       }
+      ```
     </details>
 
 ## Installation
