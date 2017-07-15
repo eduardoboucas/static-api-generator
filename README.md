@@ -11,6 +11,17 @@ It takes your existing data files, which you may already be using to feed a stat
 
 Couple it with services like [GitHub Pages](https://pages.github.com/) or [Netlify](https://www.netlify.com/) and you can serve your API right from the repository too. :boom:
 
+---
+
+- [Usage](#usage)
+- [Installation](#installation)
+- [API](#api)
+  - [Constructor](#constructor)
+  - [addEndpoint](#method-addendpoint)
+- [Q&A](#qa)
+
+---
+
 ## Usage
 
 Imagine the following repository holding reviews for whisky brands, organised by country of origin. Each review will be in a YAML file within the directory of the brand.
@@ -163,7 +174,7 @@ The constructor method takes an object with the following properties.
 
     **Required**. A path describing the hierarchy and nomenclature of your data. It should start with a static path to the directory where all the files are located, followed by the name of each data level (starting with a colon).
 
-    For the [pluralise](#) option to work well, the names of the data levels should be singular (e.g. `country` instead of `countries`)
+    For the [pluralise](#pluralise) option to work well, the names of the data levels should be singular (e.g. `country` instead of `countries`)
 
     *Example:*
     
