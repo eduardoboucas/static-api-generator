@@ -123,3 +123,43 @@ data/
       ]
     }
     ```
+
+## Installation
+
+- Install via npm
+
+    ```shell
+    npm install pluma --save
+    ```
+
+- Require the module and create an API
+
+    ```js
+    const pluma = require('pluma')
+    const api = new Pluma({...})
+    ```
+
+## API
+
+### Constructor
+
+```js
+const pluma = require('pluma')
+const api = new Pluma({
+  blueprint: String,
+  targetDirectory: String
+})
+```
+
+The constructor accepts an object with the following properties.
+
+- `blueprint`
+
+    A path describing the hierarchy and nomenclature of your data. It should start with a static path to the directory where all the files are located, followed by the name of each data level (starting with a colon).
+
+    *Example:*
+    `'data/:country/:brand/:review'`
+
+## Credits
+
+Logo created by [Sara Giacomini](https://thenounproject.com/sara_giacomini/) from Noun Project.
