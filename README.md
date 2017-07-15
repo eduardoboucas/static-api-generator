@@ -33,40 +33,40 @@ data/
 |   |_ macallan/
 ```
 
-Start by initialising Pluma and specifiying the API blueprint, so it can make sense of the data, as well as the base directory where the files will be created.
+- Initialise Pluma and specifiy the API blueprint, so it can make sense of the data, as well as the base directory where the files will be created.
 
-```js
-const api = new Pluma({
-  blueprint: 'data/:country/:brand/:review',
-  targetDirectory: 'output'
-})
-```
+    ```js
+    const api = new Pluma({
+      blueprint: 'data/:country/:brand/:review',
+      targetDirectory: 'output'
+    })
+    ```
 
-The next step is to start adding endpoints, as many as you'd like. Let's say that you want to create an endpoint that lists all the whisky brands for each country.
+- Start adding endpoints (as many as you'd like). The following creates an endpoint that lists all the whisky brands for each country.
 
-```js
-api.addEndpoint({
-  forEach: 'country'
-})
-```
+    ```js
+    api.addEndpoint({
+      forEach: 'country'
+    })
+    ```
 
-This will generate 3 files: `output/american.json`, `output/japanese.json` and `output/scotch.json`, looking something like this:
+    This will generate 3 files: `output/american.json`, `output/japanese.json` and `output/scotch.json`, looking something like this:
 
-*output/american.json*
+    *output/american.json*
 
-```json
-{
-  "brands": [
+    ```json
     {
-      "brand_id": "anchor-distilling"
-    },
-    {
-      "brand_id": "bakers"
-    },
-    {
-      "brand_id": "bernheim"
+      "brands": [
+        {
+          "brand_id": "anchor-distilling"
+        },
+        {
+          "brand_id": "bakers"
+        },
+        {
+          "brand_id": "bernheim"
+        }
+      ]
     }
-  ]
-}
-```
+    ```
 
