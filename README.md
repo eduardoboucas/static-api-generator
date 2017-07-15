@@ -357,6 +357,10 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 - **Would it be possible to add feature X, Y or Z?**
 
     Probably. File an [issue](https://github.com/eduardoboucas/pluma/issues) or, even better, a [pull request](https://github.com/eduardoboucas/pluma/pulls) and I'm happy to help. Bare in mind that this is a side project (one of too many) which I'm able to dedicate a very limited amount of time to, so please be patient and try to understand if I tell you I don't have the capacity to build what you're looking for.
+    
+- **What does *pluma* mean?**
+
+    It means *feather* in Portuguese. 🇵🇹
 
 - **Why *
 
