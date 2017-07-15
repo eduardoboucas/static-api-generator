@@ -327,6 +327,26 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
     
 ---
 
-## Credits
+## Q&A
 
-Logo created by [Sara Giacomini](https://thenounproject.com/sara_giacomini/) from Noun Project.
+- **Why did you build this?**
+
+    GitHub has been the centrepiece of my daily workflow as a developer for many years. I love the idea of using a repository not only for version control, but also as the single source of truth for a data set. As a result, I created [several](https://staticman.net) [projects](https://speedtracker.org) that explore the usage of GitHub repositories as data stores, and I've used that approach in several professional and personal projects, including [my own site/blog](https://eduardoboucas.com).
+
+- **Couldn't Jekyll, Hugo or XYZ do the same thing?**
+
+    Possibly. Most static site generators are capable of generating JSON, but usually using awkward/brittle methods. Most of those applications were built to generate HTML pages and that's where they excel on. I tried to create a minimalistic and easy-as-it-gets way of generating something very specific: a bunch of JSON files that, when bundled together, form a very basic API layer.
+
+- **Where can I host this?**
+
+    [GitHub Pages](https://pages.github.com/) is a very appealing option, since you could serve the API right from the repository. It has CORS enabled, so you could easily consume it from a client-side application using React, Angular, Vue or whatever you prefer. You could even use a CI service like [Travis](https://travis-ci.org/) to listen for commits on a given branch (say `master`) and automatically run Pluma and push the generated output to a `gh-pages` branch, making the process of generating the API when data changes fully automated.
+
+    [Netlify](https://www.netlify.com/) is also very cool and definitely worth trying.
+
+- **Would it be possible to add feature X, Y or Z?**
+
+    Probably. File an [issue](https://github.com/eduardoboucas/pluma/issues) or, even better, a [pull request](https://github.com/eduardoboucas/pluma/pulls) and I'm happy to help. Bare in mind that this is a side project (one of too many) which I'm able to dedicate a very limited amount of time to, so please be patient and try to understand if I tell you I don't have the capacity to build what you're looking for.
+
+- **Who designed the logo?**
+
+    The logo was created by [Sara Giacomini](https://thenounproject.com/sara_giacomini/) from The Noun Project and it's licensed under a [Creative Commons Attribution](https://creativecommons.org/licenses/by/3.0/us/) license.
