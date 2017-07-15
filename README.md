@@ -33,7 +33,7 @@ data/
 |   |_ macallan/
 ```
 
-- Initialise Pluma and specifiy the API blueprint, so it can make sense of the data, as well as the base directory where the files will be created.
+1. Initialise Pluma and specifiy the API blueprint, so it can make sense of the data, as well as the base directory where the files will be created.
 
     ```js
     const api = new Pluma({
@@ -42,7 +42,7 @@ data/
     })
     ```
 
-- Start adding endpoints (as many as you'd like). The following creates an endpoint that lists all the whisky brands for each country.
+1. Add an endpoint (or as many as you'd like). The following creates an endpoint that lists all the whisky brands for each country.
 
     ```js
     api.addEndpoint({
@@ -70,7 +70,7 @@ data/
     }
     ```
 
-- Configure each endpoint to contain the exact amount of information you want. We can tweak the previous endpoint to also include the list of reviews for each brand, by changing the `depth` property, which configures the amount of nested levels that the endpoint will pick up (defaults to 1).
+1. Configure each endpoint to contain the exact amount of information you want. We can tweak the previous endpoint to also include the list of reviews for each brand, by changing the `depth` property, which configures the amount of nested levels that the endpoint will pick up (defaults to 1).
 
     ```js
     api.addEndpoint({
