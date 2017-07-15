@@ -253,7 +253,6 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 
     <details>
       <summary>*Example result*</summary>
-      <details>
 
         ```json
         {
@@ -290,7 +289,6 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
           ]
         }
         ``` 
-      </details>
     </details>
 
 - ### `forEach`
