@@ -1,4 +1,4 @@
-<img src=".github/logo.png" alt="Pluma logo" height="185"/>
+<img src="https://raw.githubusercontent.com/eduardoboucas/pluma/master/.github/logo.png" alt="Pluma logo" height="185"/>
 
 [![npm (scoped)](https://img.shields.io/npm/v/pluma.svg?maxAge=10800&style=flat-square)](https://www.npmjs.com/package/pluma)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
@@ -357,6 +357,8 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 - **Would it be possible to add feature X, Y or Z?**
 
     Probably. File an [issue](https://github.com/eduardoboucas/pluma/issues) or, even better, a [pull request](https://github.com/eduardoboucas/pluma/pulls) and I'm happy to help. Bare in mind that this is a side project (one of too many) which I'm able to dedicate a very limited amount of time to, so please be patient and try to understand if I tell you I don't have the capacity to build what you're looking for.
+
+- **Why *
 
 - **Who designed the logo?**
 
