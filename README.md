@@ -1,4 +1,4 @@
-# pluma
+<img src=".github/logo.png" alt="Pluma logo" height="185"/>
 
 Pluma is a Node application that creates a basic JSON API from a tree of directories and files. Think a static site generator like Jekyll or Hugo but for APIs.
 
