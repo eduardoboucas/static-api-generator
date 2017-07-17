@@ -330,10 +330,10 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 
 - ### `pluralise`
 
-    The name of each data level (e.g. `"brand"`) is used in the singular form when identifying a single entity (e.g. `{"brand_id": "12345"}) and in the plural form when identifying a list of entities (e.g. `{"brands": [...]}). That behaviour can be disabled by setting this property to `false`.
+    The name of each data level (e.g. `"brand"`) is used in the singular form when identifying a single entity (e.g. `{"brand_id": "12345"}`) and in the plural form when identifying a list of entities (e.g. `{"brands": [...]}`). That behaviour can be disabled by setting this property to `false`.
 
     *Default:*
-    
+
     `true`
     
 ---
@@ -361,8 +361,6 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 - **What does *pluma* mean?**
 
     It means *feather* in Portuguese. 🇵🇹
-
-- **Why *
 
 - **Who designed the logo?**
 
