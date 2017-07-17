@@ -1,13 +1,13 @@
-<img src="https://raw.githubusercontent.com/eduardoboucas/pluma/master/.github/logo.png" alt="Pluma logo" height="185"/>
+<img src="https://raw.githubusercontent.com/eduardoboucas/static-api-generator/master/.github/logo.png" alt="Pluma logo" height="185"/>
 
 [![npm (scoped)](https://img.shields.io/npm/v/pluma.svg?maxAge=10800&style=flat-square)](https://www.npmjs.com/package/pluma)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
-<!--[![coverage](https://img.shields.io/badge/coverage-88%25-yellow.svg?style=flat?style=flat-square)](https://github.com/dadi/pluma)
-[![Build Status](https://travis-ci.org/dadi/pluma.svg?branch=master)](https://travis-ci.org/dadi/pluma)-->
+<!--[![coverage](https://img.shields.io/badge/coverage-88%25-yellow.svg?style=flat?style=flat-square)](https://github.com/eduardoboucas/static-api-generator)
+[![Build Status](https://travis-ci.org/eduardoboucas/static-api-generator.svg?branch=master)](https://travis-ci.org/eduardoboucas/static-api-generator)-->
 
-Pluma is a lightweight Node.js application that creates a basic JSON API from a tree of directories and files. Think of a static site generator, like Jekyll or Hugo, but for APIs.
+Static API generator is a Node.js application that creates a basic JSON API from a tree of directories and files. Think of a static site generator, like Jekyll or Hugo, but for APIs.
 
-It takes your existing data files, which you may already be using to feed a static site generator or similar, and creates an API layer with whatever structure you want, leaving the original files untouched. Pluma helps you deliver your data to client-side applications or third-party syndication services.
+It takes your existing data files, which you may already be using to feed a static site generator or similar, and creates an API layer with whatever structure you want, leaving the original files untouched. Static API generator helps you deliver your data to client-side applications or third-party syndication services.
 
 Couple it with services like [GitHub Pages](https://pages.github.com/) or [Netlify](https://www.netlify.com/) and you can serve your API right from the repository too. :boom:
 
@@ -51,10 +51,10 @@ data/
 |   |_ macallan/
 ```
 
-1. Initialise Pluma and specifiy the API blueprint, so it can make sense of the data, as well as the base directory where the files will be created.
+1. Create an API and specifiy its blueprint, so it can make sense of the data, as well as the base directory where the files will be created.
 
     ```js
-    const api = new Pluma({
+    const api = new API({
       blueprint: 'data/:country/:brand/:review',
       targetDirectory: 'output'
     })
@@ -144,14 +144,14 @@ data/
 - Install via npm
 
     ```shell
-    npm install pluma --save
+    npm install static-api-generator --save
     ```
 
 - Require the module and create an API
 
     ```js
-    const pluma = require('pluma')
-    const api = new Pluma(constructorOptions)
+    const StaticAPIGenerator = require('static-api-generator')
+    const api = new StaticAPIGenerator(constructorOptions)
     ```
 
 ## API
@@ -159,8 +159,8 @@ data/
 ### Constructor
 
 ```js
-const pluma = require('pluma')
-const api = new Pluma({
+const StaticAPIGenerator = require('static-api-generator')
+const api = new StaticAPIGenerator({
   blueprint: String,
   targetDirectory: String
 })
@@ -350,17 +350,13 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 
 - **Where can I host this?**
 
-    [GitHub Pages](https://pages.github.com/) is a very appealing option, since you could serve the API right from the repository. It has CORS enabled, so you could easily consume it from a client-side application using React, Angular, Vue or whatever you prefer. You could even use a CI service like [Travis](https://travis-ci.org/) to listen for commits on a given branch (say `master`) and automatically run Pluma and push the generated output to a `gh-pages` branch, making the process of generating the API when data changes fully automated.
+    [GitHub Pages](https://pages.github.com/) is a very appealing option, since you could serve the API right from the repository. It has CORS enabled, so you could easily consume it from a client-side application using React, Angular, Vue or whatever you prefer. You could even use a CI service like [Travis](https://travis-ci.org/) to listen for commits on a given branch (say `master`) and automatically run Static API Generator and push the generated output to a `gh-pages` branch, making the process of generating the API when data changes fully automated.
 
     [Netlify](https://www.netlify.com/) is also very cool and definitely worth trying.
 
 - **Would it be possible to add feature X, Y or Z?**
 
-    Probably. File an [issue](https://github.com/eduardoboucas/pluma/issues) or, even better, a [pull request](https://github.com/eduardoboucas/pluma/pulls) and I'm happy to help. Bare in mind that this is a side project (one of too many) which I'm able to dedicate a very limited amount of time to, so please be patient and try to understand if I tell you I don't have the capacity to build what you're looking for.
-    
-- **What does *pluma* mean?**
-
-    It means *feather* in Portuguese. 🇵🇹
+    Probably. File an [issue](https://github.com/eduardoboucas/static-api-generator/issues) or, even better, a [pull request](https://github.com/eduardoboucas/static-api-generator/pulls) and I'm happy to help. Bare in mind that this is a side project (one of too many) which I'm able to dedicate a very limited amount of time to, so please be patient and try to understand if I tell you I don't have the capacity to build what you're looking for.
 
 - **Who designed the logo?**
 

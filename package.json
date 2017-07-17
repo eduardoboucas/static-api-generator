@@ -1,7 +1,7 @@
 {
-  "name": "pluma",
-  "version": "1.0.1",
-  "description": "Static API generator",
+  "name": "static-api-generator",
+  "version": "1.0.0",
+  "description": "Generate a static API layer from a tree of directories and files",
   "main": "index.js",
   "scripts": {
     "test": "standard && jest"
