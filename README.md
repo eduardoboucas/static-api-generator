@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/eduardoboucas/static-api-generator/master/.github/logo.png" alt="Pluma logo" height="185"/>
+<img src="https://raw.githubusercontent.com/eduardoboucas/static-api-generator/master/.github/logo.png" alt="Pluma logo" height="120"/>
 
 [![npm (scoped)](https://img.shields.io/npm/v/pluma.svg?maxAge=10800&style=flat-square)](https://www.npmjs.com/package/pluma)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
@@ -150,8 +150,8 @@ data/
 - Require the module and create an API
 
     ```js
-    const StaticAPIGenerator = require('static-api-generator')
-    const api = new StaticAPIGenerator(constructorOptions)
+    const API = require('static-api-generator')
+    const api = new API(constructorOptions)
     ```
 
 ## API
@@ -159,8 +159,8 @@ data/
 ### Constructor
 
 ```js
-const StaticAPIGenerator = require('static-api-generator')
-const api = new StaticAPIGenerator({
+const API = require('static-api-generator')
+const api = new API({
   blueprint: String,
   targetDirectory: String
 })
@@ -360,4 +360,4 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 
 - **Who designed the logo?**
 
-    The logo was created by [Sara Giacomini](https://thenounproject.com/sara_giacomini/) from The Noun Project and it's licensed under a [Creative Commons Attribution](https://creativecommons.org/licenses/by/3.0/us/) license.
+    The logo was created by [Arthur Shlain](https://thenounproject.com/ArtZ91/) from The Noun Project and it's licensed under a [Creative Commons Attribution](https://creativecommons.org/licenses/by/3.0/us/) license.
