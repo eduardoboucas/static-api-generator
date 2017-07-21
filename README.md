@@ -360,4 +360,4 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
 
 - **Who designed the logo?**
 
-    The logo was created by [Sara Giacomini](https://thenounproject.com/sara_giacomini/) from The Noun Project and it's licensed under a [Creative Commons Attribution](https://creativecommons.org/licenses/by/3.0/us/) license.
+    The logo was created by [Arthur Shlain](https://thenounproject.com/ArtZ91/) from The Noun Project and it's licensed under a [Creative Commons Attribution](https://creativecommons.org/licenses/by/3.0/us/) license.
