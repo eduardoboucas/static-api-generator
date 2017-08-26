@@ -97,9 +97,9 @@ moviesApi.generate({
 })
 ```
 
-## API
+## 3. API
 
-### Constructor
+### 3.1. Constructor
 
 ```js
 const API = require('static-api-generator')
@@ -158,7 +158,7 @@ The constructor method takes an object with the following properties.
     
 ---
 
-### Method: `generate`
+### 3.2. Method: `generate`
 
 ```js
 api.addEndpoint({
@@ -203,7 +203,7 @@ The `generate` method creates one or more endpoints. It takes an object with the
 
 ---
 
-- ### `index`
+- #### `index`
 
     The name of the main/index endpoint file.
 
@@ -231,7 +231,7 @@ The `generate` method creates one or more endpoints. It takes an object with the
     
 ---
 
-- ### `root`
+- #### `root`
 
     The name of the root level. When this doesn't correspond to the first level in the blueprint, the data tree is manipulated so that all entries become grouped by the new root level.
 
@@ -245,7 +245,7 @@ The `generate` method creates one or more endpoints. It takes an object with the
     
 ---
 
-## Q&A
+## 4. Q&A
 
 - **Why did you build this?**
 
