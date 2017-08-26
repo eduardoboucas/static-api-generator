@@ -242,6 +242,32 @@ The `generate` method creates one or more endpoints. It takes an object with the
     *Example:*
 
     `genre`
+
+---
+
+- #### `sort`
+
+    An object that defines how the various data levels should be sorted. For levels corresponding to directories, an object with a single property (`order`) is expected, determining whether directory names are sorted from A-Z (`ascending`) or Z-A (`descending`).
+
+    When levels contain entries, an additional property (`field`) defines what field of the data files should be used to sort the entries.
+
+    *Default:*
+
+    `{}` (directories will be sorted alphabetically from A-Z, entries will be sorted alphabetically from A-Z based on their filename)
+
+    *Example:*
+
+    ```js
+    {
+      genre: {
+        order: 'descending'
+      },
+      movie: {
+        field: 'budget',
+        order: 'descending'
+      }
+    }
+    ```
     
 ---
 
