@@ -9,137 +9,18 @@ Static API generator is a Node.js application that creates a basic JSON API from
 
 It takes your existing data files, which you may already be using to feed a static site generator or similar, and creates an API layer with whatever structure you want, leaving the original files untouched. Static API generator helps you deliver your data to client-side applications or third-party syndication services.
 
-Couple it with services like [GitHub Pages](https://pages.github.com/) or [Netlify](https://www.netlify.com/) and you can serve your API right from the repository too. :boom:
+Couple it with services like [GitHub Pages](https://pages.github.com/) or [Netlify](https://www.netlify.com/) and you can serve your API right from the repository too. 🦄
 
 ---
 
-- [Usage](#usage)
 - [Installation](#installation)
+- [Usage](#usage)
 - [API](#api)
-  - [Constructor](#constructor)
-  - [addEndpoint](#method-addendpoint)
 - [Q&A](#qa)
 
 ---
 
-## Usage
-
-Imagine the following repository holding reviews for whisky brands, organised by country of origin. Each review will be in a YAML file within the directory of the brand.
-
-```
-data/
-|__ american/
-|   |_ anchor-distilling/
-|   |  |_ review1.yml
-|   |  |_ review2.yml
-|   |_ bakers/
-|   |  |_ review3.yml
-|   |_ bernheim/
-|   |  |_ review4.yml
-|__ japanese/
-|   |_ chichibu/
-|   |  |_ review7.yml
-|   |_ hanyu/
-|   |_ nikka/
-|   |  |_ review8.yml
-|__ scotch/
-|   |_ aberlour/
-|   |  |_ review9.yml
-|   |_ glendronach/
-|   |  |_ review10.yml
-|   |  |_ review11.yml
-|   |_ macallan/
-```
-
-1. Create an API and specifiy its blueprint, so it can make sense of the data, as well as the base directory where the files will be created.
-
-    ```js
-    const api = new API({
-      blueprint: 'data/:country/:brand/:review',
-      targetDirectory: 'output'
-    })
-    ```
-
-1. Add an endpoint (or as many as you'd like). The following creates an endpoint that lists all the whisky brands for each country.
-
-    ```js
-    api.addEndpoint({
-      forEach: 'country'
-    })
-    ```
-
-    This will generate 3 files: `output/american.json`, `output/japanese.json` and `output/scotch.json`.
-
-    <details>
-      <summary><i>output/american.json</i></summary>
-
-      ```json
-      {
-        "brands": [
-          {
-            "brand_id": "anchor-distilling"
-          },
-          {
-            "brand_id": "bakers"
-          },
-          {
-            "brand_id": "bernheim"
-          }
-        ]
-      }
-      ```
-    </details>
-
-1. Configure each endpoint to contain the exact amount of information you want. We can tweak the previous endpoint to also include the list of reviews for each brand, by changing the `depth` property, which configures the amount of nested data levels that the endpoint will pick up.
-
-    ```js
-    api.addEndpoint({
-      forEach: 'country',
-      depth: 2
-    })
-    ```
-
-    <details>
-      <summary><i>output/american.json</i></summary>
-
-      ```json
-      {
-        "brands": [
-          {
-            "brand_id": "anchor-distilling",
-            "reviews": [
-              {
-                "review_id": "04440f660f472e81eda881cbd8ee6ab0",
-                "name": "John Appleseed",
-                "message": "I've got 99 whiskies but this is the one!"
-              },
-              {
-                "review_id": "05cc65f24af5ec420da8950d539a926d",
-                "name": "Jane Doe",
-                "message": "Hmm, not my cup of tea."
-              }
-            ]
-          },
-          {
-            "brand_id": "bakers",
-            "reviews": null
-          },
-          {
-            "brand_id": "bernheim",
-            "reviews": [
-              {
-                "review_id": "96a9b996439528ecb9050774c3e79ff2",
-                "name": "Justin Case",
-                "message": "First two glasses tasted great, can't really remember the rest!"
-              }
-            ]
-          } 
-        ]
-      }
-      ```
-    </details>
-
-## Installation
+## 1. Installation
 
 - Install via npm
 
@@ -154,6 +35,68 @@ data/
     const api = new API(constructorOptions)
     ```
 
+## 2. Usage
+
+Imagine the following repository holding data about movies, organised by language, genre and year. Information about each movie will be in its own YAML file named after the movie.
+
+```
+input/
+├── english
+│   ├── action
+│   │   ├── 2016
+│   │   │   ├── deadpool.yaml
+│   │   │   └── the-great-wall.yaml
+│   │   └── 2017
+│   │       ├── logan.yaml
+│   │       └── the-fate-of-the-furious.yaml
+│   └── horror
+│       └── 2017
+│           ├── alien-covenant.yaml
+│           └── get-out.yaml
+└── portuguese
+    └── action
+        └── 2016
+            └── tropa-de-elite.yaml
+```
+
+### 2.1. Initialisation
+
+Create an API by specifying its blueprint, so that the static API generator can understand how the data is structured, and the directory where the generated files should be saved.
+
+```js
+const moviesApi = new API({
+  blueprint: 'source/:language/:genre/:year/:movie',
+  targetDirectory: 'output'
+})
+```
+
+### 2.2 Generating endpoints
+
+The following will generate and endpoint for each movie (e.g. `/english/action/2016/deadpool.json`).
+
+```js
+moviesApi.generate({
+  endpoints: ['movie']
+})
+```
+
+Endpoints can be created for any data level. The following creates additional endpoints at the genre level (e.g. `/english/action.json`).
+
+```js
+moviesApi.generate({
+  endpoints: ['genre', 'movie']
+})
+```
+
+It's also possible to manipulate the hierarchy of the data by choosing a different root level. For example, one could generate endpoints for each genre without a separation enforced by language, its original parent level. This means being able to create endpoints like `/action.json` (as opposed to `/english/action.json`), where all action movies are listed regardless of their language.
+
+```js
+moviesApi.generate({
+  endpoints: ['genre', 'movie'],
+  root: 'genre'
+})
+```
+
 ## API
 
 ### Constructor
@@ -161,49 +104,14 @@ data/
 ```js
 const API = require('static-api-generator')
 const api = new API({
+  addIdToFiles: Boolean,
   blueprint: String,
+  pluralise: Boolean,
   targetDirectory: String
 })
 ```
 
 The constructor method takes an object with the following properties.
-
----
-
-- #### `blueprint`
-
-    **Required**. A path describing the hierarchy and nomenclature of your data. It should start with a static path to the directory where all the files are located, followed by the name of each data level (starting with a colon).
-
-    For the [pluralise](#pluralise) option to work well, the names of the data levels should be singular (e.g. `country` instead of `countries`)
-
-    *Example:*
-    
-    `'data/:country/:brand/:review'`
-    
----
-
-- #### `targetDirectory`
-
-    **Required**. The path to the directory where endpoint files should be created.
-
-    *Example:*
-    
-    `'output'`
-    
----
-
-### Method: `addEndpoint`
-
-```js
-api.addEndpoint({
-  addIdToFiles: Boolean,
-  customFields: Object,
-  depth: Number,
-  forEach: String
-})
-```
-
-The `addEndpoint` method creates an endpoint for a data level. It takes an object with the following properties.
 
 ---
 
@@ -218,123 +126,122 @@ The `addEndpoint` method creates an endpoint for a data level. It takes an objec
     *Example result:*
     
     `"review_id": "96a9b996439528ecb9050774c3e79ff2"`
-    
----
 
-- #### `customFields`
 
-    An object containing a list of custom fields to be appended to each data level. If a field is defined as a function, it acts as a callback receiving the name of the node at the given level and its entire sub-tree. Otherwise, its value is used directly as the value of the custom field.
+- #### `blueprint`
 
-    *Default:*
+    **Required**. A path describing the hierarchy and nomenclature of the data. It should start with a static path to the directory where all the files are located, followed by the name of each data level (starting with a colon).
 
-    `{}`    
+    For the [pluralise](#pluralise) option to work well, the names of the data levels should be singular (e.g. `languages` vs. `language`)
 
     *Example:*
     
-    ```js
-    {
-      country: {
-        // Adds a static property called `apiVersion`
-        apiVersion: 2,
+    `'input/:language/:genre/:year/:movie'`
 
-        // Adds a field called `brandCount`, counting the number of
-        // child nodes.
-        brandCount: (node, tree) => Object.keys(tree).length
-      }
-    }
-    ```
+- #### `pluralise`
 
-    <details>
-      <summary><i>Example result (output/american.json)</i></summary>
-
-      {
-        "apiVersion": 2,
-        "brands": [
-          {
-            "brand_id": "anchor-distilling"
-          },
-          {
-            "brand_id": "bakers"
-          },
-          {
-            "brand_id": "bernheim"
-          } 
-        ],
-        "brandCount": 3
-      }      
-    </details>
-    
----
-
-- #### `depth`
-
-    The number of nested data levels that should be included in the endpoint.
-
-    *Default:*
-    
-    `1`
-
-    *Example:*
-    
-    `2`
-
-    <details>
-    <summary><i>Example result</i></summary>
-
-        {
-          "brands": [
-            {
-              "brand_id": "anchor-distilling",
-              "reviews": [
-                {
-                  "review_id": "04440f660f472e81eda881cbd8ee6ab0",
-                  "name": "John Appleseed",
-                  "message": "I've got 99 whiskies but this is the one!"
-                },
-                {
-                  "review_id": "05cc65f24af5ec420da8950d539a926d",
-                  "name": "Jane Doe",
-                  "message": "Hmm, not my cup of tea."
-                }
-              ]
-            },
-            {
-              "brand_id": "bakers",
-              "reviews": null
-            },
-            {
-              "brand_id": "bernheim",
-              "reviews": [
-                {
-                  "review_id": "96a9b996439528ecb9050774c3e79ff2",
-                  "name": "Justin Case",
-                  "message": "First two glasses tasted great, can't really remember the rest!"
-                }
-              ]
-            } 
-          ]
-        }
-    </details>
-    
----
-
-- ### `forEach`
-
-    **Required**. The name of the data level to be used as the source for the endpoint. Effectively, an endpoint will be created for each directory or file found at the given data level.
-
-    *Example:*
-    
-    `brand`
-    
----
-
-- ### `pluralise`
-
-    The name of each data level (e.g. `"brand"`) is used in the singular form when identifying a single entity (e.g. `{"brand_id": "12345"}`) and in the plural form when identifying a list of entities (e.g. `{"brands": [...]}`). That behaviour can be disabled by setting this property to `false`.
+    The name of each data level (e.g. `"genre"`) is used in the singular form when identifying a single entity (e.g. `{"genre_id": "12345"}`) and in the plural form when identifying a list of entities (e.g. `{"genres": [...]}`). That behaviour can be disabled by setting this property to `false`.
 
     *Default:*
 
-    `true`
+    `true`    
+    
+---
+
+- #### `targetDirectory`
+
+    **Required**. The path to the directory where endpoint files should be created.
+
+    *Example:*
+    
+    `'output'`
+    
+---
+
+### Method: `generate`
+
+```js
+api.addEndpoint({
+  endpoints: Array,
+  entriesPerPage: Number,
+  index: String,
+  levels: Array,
+  root: String,
+  sort: Object
+})
+```
+
+The `generate` method creates one or more endpoints. It takes an object with the following properties.
+
+---
+
+- #### `endpoints`
+
+    The names of the data levels to create individual endpoints for, which means generating a JSON file for each file or directory that corresponds to a given level.
+
+    *Default:*
+
+    `[]`
+
+    *Example:*
+    
+    `['genre', 'movie']`
+    
+---
+
+- #### `entriesPerPage`
+
+    The maximum number of entries (data files) to include in an endpoint file. If the number of entries exceeds this number, additional endpoints are created (e.g. `/action.json`, `/action-2.json`, etc.).
+
+    *Default:*
+
+    `10`    
+
+    *Example:*
+    
+    `3`
+
+---
+
+- ### `index`
+
+    The name of the main/index endpoint file.
+
+    *Default:*
+    
+    The pluralised name of the root level (e.g. `languages`).
+
+    *Example:*
+    
+    `languages` (generates `languages.json`)
+    
+---
+
+- #### `levels`
+
+    An array containing the names of the levels to include in the endpoints. By default, an endpoint for a level will include all its child levels (e.g. an endpoint for a *genre* will have a list of *years*, which will have a list of *movies*). If a level is omitted (e.g. *year*), then all its entries are grouped together (i.e. an endpoint for a *genre* will have a list of all its *movies*, without any separation by *year*).
+
+    *Default:*
+    
+    All levels
+
+    *Example:*
+    
+    `['language', 'genre', 'movie']`
+    
+---
+
+- ### `root`
+
+    The name of the root level. When this doesn't correspond to the first level in the blueprint, the data tree is manipulated so that all entries become grouped by the new root level.
+
+    *Default:*
+
+    The name of the first level of the blueprint (e.g. `language`)
+
+    *Example:*
+
+    `genre`
     
 ---
 
