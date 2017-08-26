@@ -161,7 +161,7 @@ The constructor method takes an object with the following properties.
 ### 3.2. Method: `generate`
 
 ```js
-api.addEndpoint({
+api.generate({
   endpoints: Array,
   entriesPerPage: Number,
   index: String,
