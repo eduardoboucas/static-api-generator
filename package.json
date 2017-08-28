@@ -4,7 +4,8 @@
   "description": "Generate a static API layer from a tree of directories and files",
   "main": "index.js",
   "scripts": {
-    "test": "standard && jest"
+    "test": "standard && jest",
+    "test-dev": "jest --watch"
   },
   "keywords": [
     "api",
