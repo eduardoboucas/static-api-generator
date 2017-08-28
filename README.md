@@ -66,7 +66,7 @@ Create an API by specifying its blueprint, so that the static API generator can 
 ```js
 const moviesApi = new API({
   blueprint: 'source/:language/:genre/:year/:movie',
-  targetDirectory: 'output'
+  outputPath: 'output'
 })
 ```
 
@@ -107,7 +107,7 @@ const api = new API({
   addIdToFiles: Boolean,
   blueprint: String,
   pluralise: Boolean,
-  targetDirectory: String
+  outputPath: String
 })
 ```
 
@@ -127,6 +127,7 @@ The constructor method takes an object with the following properties.
     
     `"review_id": "96a9b996439528ecb9050774c3e79ff2"`
 
+---
 
 - #### `blueprint`
 
@@ -138,23 +139,25 @@ The constructor method takes an object with the following properties.
     
     `'input/:language/:genre/:year/:movie'`
 
-- #### `pluralise`
-
-    The name of each data level (e.g. `"genre"`) is used in the singular form when identifying a single entity (e.g. `{"genre_id": "12345"}`) and in the plural form when identifying a list of entities (e.g. `{"genres": [...]}`). That behaviour can be disabled by setting this property to `false`.
-
-    *Default:*
-
-    `true`    
-    
 ---
 
-- #### `targetDirectory`
+- #### `outputPath`
 
     **Required**. The path to the directory where endpoint files should be created.
 
     *Example:*
     
     `'output'`
+
+---
+
+- #### `pluralise`
+
+    The name of each data level (e.g. `"genre"`) is used in the singular form when identifying a single entity (e.g. `{"genre_id": "12345"}`) and in the plural form when identifying a list of entities (e.g. `{"genres": [...]}`). That behaviour can be disabled by setting this property to `false`.
+
+    *Default:*
+
+    `true`
     
 ---
 
