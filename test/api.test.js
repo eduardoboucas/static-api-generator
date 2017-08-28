@@ -96,7 +96,7 @@ describe('API', () => {
         .toBeDefined()
     })
 
-    test('paginates results and writes them to multiple files', () => {
+    test('splits paginated results across multiple files and adds correct metadata block', () => {
       const api = new API({
         blueprint: mockBlueprint,
         outputPath: mockOutputPath
@@ -146,6 +146,241 @@ describe('API', () => {
         .toBe(Math.ceil(mockResults.length / 2))
       expect(files[`${mockOutputPath}/movies-2.json`].metadata.previousPage)
         .toBe('/movies.json')
+    })
+  })
+
+  describe('`_filterTreeLevels()`', () => {
+    const mockTree = {
+      english: {
+        action: {
+          2015: [
+            'movie1.yaml',
+            'movie2.yaml',
+            'movie3.yaml'
+          ],
+          2016: [
+            'movie4.yaml',
+            'movie5.yaml'
+          ]
+        },
+        horror: {
+          2016: [
+            'movie6.yaml',
+            'movie7.yaml'
+          ],
+          2017: [
+            'movie8.yaml',
+            'movie9.yaml'
+          ]
+        }
+      },
+      portuguese: {
+        action: {
+          2015: [
+            'movie10.yaml'
+          ]
+        },
+        horror: {
+          2017: [
+            'movie11.yaml',
+            'movie12.yaml'
+          ]
+        }
+      }
+    }
+
+    test('returns original tree if all levels are to be displayed', () => {
+      const api = new API({
+        blueprint: mockBlueprint,
+        outputPath: mockOutputPath
+      })
+      
+
+      const filteredTree = api._filterTreeLevels({
+        currentLevel: 0,
+        displayLevels: [1, 2, 3, 4],
+        rootNode: 'movies',
+        tree: mockTree
+      })
+
+      expect(filteredTree).toEqual(mockTree)
+    })
+
+    test('returns modified tree if first level is not displayed', () => {
+      const api = new API({
+        blueprint: mockBlueprint,
+        outputPath: mockOutputPath
+      })
+
+      const filteredTree = api._filterTreeLevels({
+        currentLevel: 0,
+        displayLevels: [2, 3, 4],
+        rootNode: 'movies',
+        tree: mockTree
+      })
+
+      expect(filteredTree).toEqual({
+        action: {
+          2015: [
+            'movie1.yaml',
+            'movie2.yaml',
+            'movie3.yaml',
+            'movie10.yaml'
+          ],
+          2016: [
+            'movie4.yaml',
+            'movie5.yaml'          
+          ]
+        },
+        horror: {
+          2016: [
+            'movie6.yaml',
+            'movie7.yaml'
+          ],
+          2017: [
+            'movie8.yaml',
+            'movie9.yaml',
+            'movie11.yaml',
+            'movie12.yaml'            
+          ]
+        }
+      })
+    })
+
+    test('returns modified tree if intermediate level is not displayed', () => {
+      const api = new API({
+        blueprint: mockBlueprint,
+        outputPath: mockOutputPath
+      })
+
+      const filteredTree = api._filterTreeLevels({
+        currentLevel: 0,
+        displayLevels: [1, 3, 4],
+        rootNode: 'movies',
+        tree: mockTree
+      })
+
+      expect(filteredTree).toEqual({
+        english: {
+          2015: [
+            'movie1.yaml',
+            'movie2.yaml',
+            'movie3.yaml'
+          ],
+          2016: [
+            'movie4.yaml',
+            'movie5.yaml',
+            'movie6.yaml',
+            'movie7.yaml'          
+          ],
+          2017: [
+            'movie8.yaml',
+            'movie9.yaml'
+          ]
+        },
+        portuguese: {
+          2015: [
+            'movie10.yaml'
+          ],
+          2017: [
+            'movie11.yaml',
+            'movie12.yaml'        
+          ]
+        }
+      })
+    })
+
+    test('returns modified tree if two intermediate levels are not displayed', () => {
+      const api = new API({
+        blueprint: mockBlueprint,
+        outputPath: mockOutputPath
+      })
+
+      const filteredTree = api._filterTreeLevels({
+        currentLevel: 0,
+        displayLevels: [1, 4],
+        rootNode: 'movies',
+        tree: mockTree
+      })
+
+      expect(filteredTree).toEqual({
+        english: [
+          'movie1.yaml',
+          'movie2.yaml',
+          'movie3.yaml',
+          'movie4.yaml',
+          'movie5.yaml',
+          'movie6.yaml',
+          'movie7.yaml',
+          'movie8.yaml',
+          'movie9.yaml'
+        ],
+        portuguese: [
+          'movie10.yaml',
+          'movie11.yaml',
+          'movie12.yaml'
+        ]
+      })
+    })
+
+    test('returns modified tree if last level is not displayed, replacing it with `null`', () => {
+      const api = new API({
+        blueprint: mockBlueprint,
+        outputPath: mockOutputPath
+      })
+
+      const filteredTree = api._filterTreeLevels({
+        currentLevel: 0,
+        displayLevels: [1, 2, 3],
+        rootNode: 'movies',
+        tree: mockTree
+      })
+
+      expect(filteredTree).toEqual({
+        english: {
+          action: {
+            2015: null,
+            2016: null
+          },
+          horror: {
+            2016: null,
+            2017: null
+          }
+        },
+        portuguese: {
+          action: {
+            2015: null
+          },
+          horror: {
+            2017: null
+          }
+        }
+      })
+    })
+
+    test('returns modified tree if last two levels are not displayed, replacing penultimate level with empty objects', () => {
+      const api = new API({
+        blueprint: mockBlueprint,
+        outputPath: mockOutputPath
+      })
+
+      const filteredTree = api._filterTreeLevels({
+        currentLevel: 0,
+        displayLevels: [1, 2],
+        rootNode: 'movies',
+        tree: mockTree
+      })
+
+      expect(filteredTree).toEqual({
+        english: {
+          action: {},
+          horror: {}
+        },
+        portuguese: {
+          action: {},
+          horror: {}
+        }
+      })
     })
   })
 })
