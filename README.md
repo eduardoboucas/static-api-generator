@@ -2,8 +2,7 @@
 
 [![npm (scoped)](https://img.shields.io/npm/v/pluma.svg?maxAge=10800&style=flat-square)](https://www.npmjs.com/package/pluma)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
-<!--[![coverage](https://img.shields.io/badge/coverage-88%25-yellow.svg?style=flat?style=flat-square)](https://github.com/eduardoboucas/static-api-generator)
-[![Build Status](https://travis-ci.org/eduardoboucas/static-api-generator.svg?branch=master)](https://travis-ci.org/eduardoboucas/static-api-generator)-->
+[![Build Status](https://travis-ci.org/eduardoboucas/static-api-generator.svg?branch=master)](https://travis-ci.org/eduardoboucas/static-api-generator)
 
 Static API generator is a Node.js application that creates a basic JSON API from a tree of directories and files. Think of a static site generator, like Jekyll or Hugo, but for APIs.
 
